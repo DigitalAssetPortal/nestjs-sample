@@ -1,0 +1,29 @@
+There are some fundamental design issues
+ 
+No Exception handling (for example during delete, what happens if there is no book with the id)
+No Logging (there are no logs at any level (info , debug or error)
+There is no validation, both business as well as technical
+I don’t like controller doing DB operations, it shud be in the DAL, which shud be in injected in service layer, which shud be injected in Controller
+If you look at OWASP guidelines, ID which are used as part of generating record shud not be used to find, as it makes ID guessing very eary
+In some cases we have seen, u need to add await in controller, or else if DB operations are slow then response will be sent without data (because of aync)
+I don’t understand how can we inject a model in controller , that seems to be wrong
+GetAllBooks will throw error if there is no data in the DB, (need to test it though, but not sure if it will be able to handle it in it current code)
+There is no documentation
+In every CRUD, I would like to see 2 more methods which people ignore (and even the below code has ignored)
+Batch Insert and Update
+Paginated Return of records
+Delete method does not handle concurrent delete request – i.e what happens when 2 concurrent request comes for deleting
+Same as concurrent delete, there is no handling of concurrent updates (but I don’t know the use case here, so may be that is not business requirement)
+The below code does not have other files required to run this (for example app.module.ts)
+
+To Improve.
+1.  Missing Validations – We need to have certain validations based on the requirements
+2.  Missing Comments, Swagger
+3.  Missing Logs
+4.  Missing Exception/Error Handling (although NestJs has some support for in-built handling for http error codes but still in some cases we need to handle custom cases)
+5.  All code related to controller, services and db operations is created as part of same file which won’t be the case for actual complex implementations and maintainability issues
+ 
+Good:
+1.  Good Starter for reference.
+2.  Nomenclature and standards followed is consistent.
+3.  Usage of async and promises (although we need awaits as well for synchronous activities)
