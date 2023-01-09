@@ -1,6 +1,6 @@
 import { ClientSession, Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { ConflictException, Inject, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import { ConflictException, Inject, InternalServerErrorException, Logger } from '@nestjs/common';
 import { LOGGER } from '../../common/core.module';
 import { Book } from '../entity/book.entity';
 import { BookDto } from '../dto/book.dto';

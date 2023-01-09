@@ -24,6 +24,7 @@ export class BookService {
         }
     }
 
+
     // Get one by ID
     async getBookDetailsById(id: string, requestId: string): Promise<CommonApiResponse> {
         try {
@@ -36,6 +37,7 @@ export class BookService {
             return error
         }
     }
+
 
     // Get All
     async getBookDetails(requestId: string): Promise<CommonApiResponse> {
@@ -50,6 +52,7 @@ export class BookService {
         }
     }
 
+
     // Update
     async updateBookDetails(createBookDto: BookDto, session: ClientSession, requestId: string): Promise<CommonApiResponse> {
         try {
@@ -63,6 +66,7 @@ export class BookService {
         }
     }
 
+
     // Delete one by ID 
     async deleteBookDetailsById(id: string, requestId: string): Promise<CommonApiResponse> {
         try {
@@ -75,6 +79,7 @@ export class BookService {
             return error
         }
     }
+
 
     // Delete All
     async deleteAllBookDetails(requestId: string): Promise<CommonApiResponse> {

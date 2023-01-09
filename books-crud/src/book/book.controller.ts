@@ -21,6 +21,7 @@ export class BookController {
         @Inject(LOGGER) private readonly logger: Logger,
         @InjectConnection() private readonly connection: Connection) { }
 
+    // Create
     @Post('/create')
     @ApiOperation({ description: "API to create book details." })
     async createBookDetails(@Body() bookDto: BookDto): Promise<CommonApiResponse> {
@@ -41,6 +42,8 @@ export class BookController {
         }
     }
 
+
+    // Get one by ID
     @Get('/:id')
     @ApiOperation({ description: "API to get book details by bookId." })
     async getBookDetailsById(@Param('id') id: string): Promise<CommonApiResponse> {
@@ -61,6 +64,8 @@ export class BookController {
         }
     }
 
+
+    // Get All
     @Get('/')
     @ApiOperation({ description: "API to get all book details." })
     async getBookDetails(): Promise<CommonApiResponse> {
@@ -81,6 +86,8 @@ export class BookController {
         }
     }
 
+
+    // Update
     @Patch('/:id/update')
     @ApiOperation({ description: "API to update book details by bookId." })
     async updateBookDetails(@Param('id') id: string, @Body() bookDto: BookDto): Promise<CommonApiResponse> {
@@ -101,6 +108,8 @@ export class BookController {
         }
     }
 
+
+    // Delete one by ID 
     @Delete('/:id')
     @ApiOperation({ description: "API to delete book details by bookId." })
     async deleteBookDetailsById(@Param('id') id: string): Promise<CommonApiResponse> {
@@ -115,6 +124,8 @@ export class BookController {
         }
     }
 
+
+    // Delete All
     @Delete('/')
     @ApiOperation({ description: "API to delete all book details." })
     async deleteAllBookDetails(): Promise<CommonApiResponse> {
