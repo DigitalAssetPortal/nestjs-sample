@@ -22,7 +22,8 @@ To Improve.
 3.  Missing Logs
 4.  Missing Exception/Error Handling (although NestJs has some support for in-built handling for http error codes but still in some cases we need to handle custom cases)
 5.  All code related to controller, services and db operations is created as part of same file which won’t be the case for actual complex implementations and maintainability issues
- 
+6.  Add requestId along with all requests (in logs, and response)
+
 Good:
 1.  Good Starter for reference.
 2.  Nomenclature and standards followed is consistent.
