@@ -12,73 +12,79 @@ export class BookService {
         private readonly bookRepository: BookRepository) { }
 
     // Create 
-    async createBookDetails(createBookDto: BookDto, session: ClientSession): Promise<CommonApiResponse> {
+    async createBookDetails(createBookDto: BookDto, session: ClientSession, requestId: string): Promise<CommonApiResponse> {
         try {
+            this.logger.info(`[BookService] [${requestId}]: Api called to create Book.`)
             const bookDetails = await this.bookRepository.addBook(createBookDto, session);
-            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse('', `Book created successfully.`, bookDetails, HttpStatus.CREATED)
+            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse(requestId, `Book created successfully.`, bookDetails, HttpStatus.CREATED)
             return apiResult
         } catch (error) {
-            this.logger.error('[BookService]: ', error)
+            this.logger.error(`[BookService] [${requestId}]: `, error)
             return error
         }
     }
 
     // Get one by ID
-    async getBookDetailsById(id: string): Promise<CommonApiResponse> {
+    async getBookDetailsById(id: string, requestId: string): Promise<CommonApiResponse> {
         try {
+            this.logger.info(`[BookService] [${requestId}]: Api called to fetch Book details.`)
             const bookDetails = await this.bookRepository.getBookById(id);
-            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse('', `Fetched Book successfully.`, bookDetails, HttpStatus.OK)
+            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse(requestId, `Fetched Book successfully.`, bookDetails, HttpStatus.OK)
             return apiResult
         } catch (error) {
-            this.logger.error('[BookService]: ', error)
+            this.logger.error(`[BookService] [${requestId}]: `, error)
             return error
         }
     }
 
     // Get All
-    async getBookDetails(): Promise<CommonApiResponse> {
+    async getBookDetails(requestId: string): Promise<CommonApiResponse> {
         try {
+            this.logger.info(`[BookService] [${requestId}]: Api called to fetch all Book Details.`)
             const bookDetails = await this.bookRepository.getAllBooks();
-            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse('', `Fetched Books List successfully.`, bookDetails, HttpStatus.OK)
+            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse(requestId, `Fetched Books List successfully.`, bookDetails, HttpStatus.OK)
             return apiResult
         } catch (error) {
-            this.logger.error('[BookService]: ', error)
+            this.logger.error(`[BookService] [${requestId}]: `, error)
             return error
         }
     }
 
     // Update
-    async updateBookDetails(createBookDto: BookDto, session: ClientSession): Promise<CommonApiResponse> {
+    async updateBookDetails(createBookDto: BookDto, session: ClientSession, requestId: string): Promise<CommonApiResponse> {
         try {
+            this.logger.info(`[BookService] [${requestId}]: Api called to update Book.`)
             const bookDetails = await this.bookRepository.updateBookDetails(createBookDto, session);
-            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse('', `Book details updated successfully.`, bookDetails, HttpStatus.OK)
+            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse(requestId, `Book details updated successfully.`, bookDetails, HttpStatus.OK)
             return apiResult
         } catch (error) {
-            this.logger.error('[BookService]: ', error)
+            this.logger.error(`[BookService] [${requestId}]: `, error)
             return error
         }
     }
 
     // Delete one by ID 
-    async deleteBookDetailsById(id: string): Promise<CommonApiResponse> {
+    async deleteBookDetailsById(id: string, requestId: string): Promise<CommonApiResponse> {
         try {
+            this.logger.info(`[BookService] [${requestId}]: Api called to delete Book.`)
             const bookDetails = await this.bookRepository.deleteBookById(id);
-            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse('', `Deleted Book successfully.`, bookDetails, HttpStatus.OK)
+            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse(requestId, `Deleted Book successfully.`, bookDetails, HttpStatus.OK)
             return apiResult
         } catch (error) {
-            this.logger.error('[BookService]: ', error)
+            this.logger.error(`[BookService] [${requestId}]: `, error)
             return error
         }
     }
 
     // Delete All
-    async deleteAllBookDetails(): Promise<CommonApiResponse> {
+    async deleteAllBookDetails(requestId: string): Promise<CommonApiResponse> {
         try {
+            this.logger.info(`[BookService] [${requestId}]: Api called to delete all Books.`)
             const bookDetails = await this.bookRepository.deleteAllBooks();
-            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse('', `Deleted All Books successfully.`, bookDetails, HttpStatus.OK)
+            const apiResult: CommonApiResponse<ApiSuccessResponse<any>> = this.constructResponse(requestId, `Deleted All Books successfully.`, bookDetails, HttpStatus.OK)
             return apiResult
         } catch (error) {
-            this.logger.error('[BookService]: ', error)
+            this.logger.error(`[BookService] [${requestId}]: `, error)
             return error
         }
     }

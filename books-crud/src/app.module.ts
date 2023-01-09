@@ -32,7 +32,7 @@ import { BookModule } from './book/book.module';
     BookModule,
     MongooseModule.forRootAsync({
       useFactory: async (configService: ConfigService) => {
-        const mongoMemoryReplicaSetServer = await MongoMemoryReplSet.create({ replSet: { count: 4 } })
+        const mongoMemoryReplicaSetServer = await MongoMemoryReplSet.create({ replSet: { count: 2 } })
         console.log(`MongoDB-In-Memory server available at URI: ${mongoMemoryReplicaSetServer.getUri()}`)
         return {
           uri: mongoMemoryReplicaSetServer.getUri(),
