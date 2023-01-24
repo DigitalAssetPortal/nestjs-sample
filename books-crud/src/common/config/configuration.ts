@@ -93,8 +93,8 @@ export const CONSTANTS = {
     SWAGGER: {
         DOCS: 'docs',
         TITLE: 'API Docs',
-        HEADER: 'SOME API',
-        DESCRIPTION: 'API - Description',
+        HEADER: 'Book Library',
+        DESCRIPTION: 'APIs to create, update, list and delete book details. ',
         VERSION: 'v1',
         TAG: 'tag'
     }

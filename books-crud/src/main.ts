@@ -21,7 +21,7 @@ async function bootstrap() {
   app.setGlobalPrefix(CONSTANTS.ROUTES.API, { exclude: [CONSTANTS.ROUTES.BASE, CONSTANTS.ROUTES.HEALTH.CONTROLLER] });
 
   // Enable validation pipe to apply any param/class validations; If not enabled any dto validations would not work
-  // app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe());
 
   // Enable Header Interceptor; Any header manupulations
   // app.useGlobalInterceptors(new HeaderInterceptor());
@@ -30,14 +30,14 @@ async function bootstrap() {
   // app.useGlobalFilters(new CommonExceptionFilter());
 
   // Enable api versioning if required; To be added before swagger setup
-  // app.enableVersioning({
-  //   type: VersioningType.URI,
-  // });
+  app.enableVersioning({
+    type: VersioningType.URI,
+  });
 
   const config = new DocumentBuilder()
     .setTitle(CONSTANTS.SWAGGER.HEADER)
     .setDescription(CONSTANTS.SWAGGER.DESCRIPTION)
-    // .setVersion(CONSTANTS.SWAGGER.VERSION)
+    .setVersion(CONSTANTS.SWAGGER.VERSION)
     // .addTag(CONSTANTS.SWAGGER.TAG)
     .build();
 

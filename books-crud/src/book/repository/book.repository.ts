@@ -11,6 +11,8 @@ export class BookRepository {
         @Inject(LOGGER) private readonly logger: Logger) { }
 
     async addBook(bookDto: BookDto, session: ClientSession) {
+        this.logger.debug('[BookRepository]: Api called to create Book.')
+
         let book = await this.getBookById(bookDto.bookId);
         if (book) {
             throw new ConflictException('Book already exist.');
@@ -31,6 +33,8 @@ export class BookRepository {
     }
 
     async getBookById(id: string) {
+        this.logger.debug('[BookRepository]: Api called to fetch Book details.')
+
         let book;
         try {
             book = await this.bookModel.findOne({ $and: [{ isActive: true }, { bookId: id }] }).exec();
@@ -41,6 +45,8 @@ export class BookRepository {
     }
 
     async getAllBooks() {
+        this.logger.debug('[BookRepository]: Api called to fetch all Book Details.')
+
         let books;
         try {
             books = await this.bookModel.find({ $and: [{ isActive: true }] }).exec();
@@ -51,6 +57,8 @@ export class BookRepository {
     }
 
     async updateBookDetails(bookDto: BookDto, session: ClientSession) {
+        this.logger.debug('[BookRepository]: Api called to update Book.')
+
         let book;
         try {
             book = await this.bookModel.findOneAndUpdate({ $and: [{ isActive: true }, { bookId: bookDto.bookId }] }, bookDto, { new: true }).exec();
@@ -66,6 +74,8 @@ export class BookRepository {
     }
 
     async deleteBookById(id: string) {
+        this.logger.debug('[BookRepository]: Api called to delete Book.')
+
         let book;
         try {
             book = await this.bookModel.remove({ $and: [{ isActive: true }, { bookId: id }] }).exec();
@@ -76,6 +86,8 @@ export class BookRepository {
     }
 
     async deleteAllBooks() {
+        this.logger.debug('[BookRepository]: Api called to delete all Books.')
+
         let book;
         try {
             book = await this.bookModel.remove({ $and: [{ isActive: true }] }).exec();
